@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SafeAreaView, View, Text, LogBox } from "react-native";
+import { SafeAreaView, View,  LogBox } from "react-native";
 import RootNavigator from "./src/RootNavigation"
 
 

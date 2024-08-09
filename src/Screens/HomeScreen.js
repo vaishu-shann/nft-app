@@ -2,14 +2,11 @@ import {
     StyleSheet,
     Text,
     View,
-    Platform,
     Image,
     ScrollView,
-    TouchableOpacity,
-    ImageBackground,
-    FlatList,
+    TouchableOpacity
 } from "react-native";
-import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
+import React, {  useState,useLayoutEffect } from "react";
 import { images } from "../assets/images"
 import { fetchData } from "../Services/APIManager";
 import { getEllipsisTxt } from "../utils/formatter";

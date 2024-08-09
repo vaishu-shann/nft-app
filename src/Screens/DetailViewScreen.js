@@ -3,15 +3,10 @@ import {
     StyleSheet,
     Text,
     View,
-    Platform,
     Image,
     TouchableOpacity,
-    ImageBackground,
-    FlatList,
-    ScrollView,
-    Button
 } from "react-native";
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, {  useState,  } from "react";
 import { images } from "../assets/images";
 import { getEllipsisTxt } from "../utils/formatter";
 import AsyncStorage from "@react-native-async-storage/async-storage";

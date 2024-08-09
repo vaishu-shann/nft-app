@@ -1,25 +1,18 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   View,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  ImageBackground,
-  Text,
+  Image
 } from "react-native";
 import * as React from "react";
 import { useTheme } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
-import { icons } from "../Assets/icons";
 import HomeScreen from "../Screens/HomeScreen";
 import BookmarkScreen from "../Screens/BookmarkScreen";
-import DetailViewScreen from "../Screens/DetailViewScreen";
 import { images } from "../assets/images";
 
 export const CustomTab = () => {
-  const { colors } = useTheme();
 
   return (
     <>
@@ -57,11 +50,11 @@ export const CustomTab = () => {
           options={{
             tabBarLabel: "",
             tabBarColor: "white",
-            
+
             tabBarIcon: ({ focused }) => (
               <View style={{}}>
                 <Image
-                  source={focused ? images.homeClrL: images.homeWhite}
+                  source={focused ? images.homeClrL : images.homeWhite}
                   style={{
                     height: 30,
                     width: 30,
@@ -83,7 +76,7 @@ export const CustomTab = () => {
             tabBarIcon: ({ focused }) => (
               <View style={{}}>
                 <Image
-                  source={focused ? images.bookmarkClr: images.bookmarkWhite}
+                  source={focused ? images.bookmarkClr : images.bookmarkWhite}
                   style={{
                     height: 25,
                     width: 25,
