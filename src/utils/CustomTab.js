@@ -61,17 +61,6 @@ export const CustomTab = () => {
         />
 
 
-
-        {/* <Tab.Screen
-          name="Detail View"
-          component={DetailViewScreen}
-          options={{
-            tabBarLabel: "Detail View",
-            tabBarColor: "white",
-
-          }}
-        /> */}
-
         <Tab.Screen
           name="Bookmark"
           component={BookmarkScreen}

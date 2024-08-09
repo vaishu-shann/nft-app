@@ -12,9 +12,11 @@ export default function App(props) {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#ffff" }}>
+
       <View style={{ flex: 1 }}>
         <RootNavigator/>
       </View>
+ 
     </SafeAreaView>
   );
 }

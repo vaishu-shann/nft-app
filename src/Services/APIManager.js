@@ -21,7 +21,7 @@ export const fetchData = async () => {
         }
 
         const data = await response.json();
-        console.log("--------API--------", data)
+        // console.log("--------API--------", data)
         return data
     } catch (err) {
 

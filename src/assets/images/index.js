@@ -9,4 +9,6 @@ bookmarkFilled:require("./bookmark_filled.png"),
 backIcon:require("./back-icon.png"),
 noImageAvailable:require("./no-image.png"),
 deLogo:require("./DE_logo.jpg"),
+deleteIcon:require("./remooveBookmark.png"),
+emptyIcon:require("./empty.png"),
 }

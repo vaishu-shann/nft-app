@@ -27,7 +27,7 @@ export default function HomeScreen({ navigation, route }) {
 
     const fetchNFTData = async () => {
         const API_res = await fetchData();
-        console.log("API_res", API_res?.data?.items)
+        // console.log("API_res", API_res?.data?.items)
         if (!API_res) {
             setError(true)
         }

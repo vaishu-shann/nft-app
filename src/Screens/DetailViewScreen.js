@@ -11,17 +11,47 @@ import {
     ScrollView,
     Button
 } from "react-native";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { images } from "../assets/images";
 import { getEllipsisTxt } from "../utils/formatter";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 export default function DetailViewScreen({ navigation, route }) {
     const { item } = route.params;
     const nft = item;
-
-    // const firstFiveFeature = attributes.slice(0, 5).map(attribute => attribute.value).join(',');
-
+    const [bookmarkAdded, setBookmarkAdded] = useState(false)
     const firstFiveValues = nft?.nft_data?.external_data?.attributes?.slice(0, 5).map(attribute => attribute.value).join(', ');
+
+
+    const handleAddToBookmark = async () => {
+        try {
+            let bookmarks = await AsyncStorage.getItem('bookmarks');
+            bookmarks = bookmarks ? JSON.parse(bookmarks) : [];
+
+            // Add new item to bookmarks
+            bookmarks.push(nft);
+
+            await AsyncStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+            setBookmarkAdded(true)
+            // navigation.navigate('BookmarkScreen');
+        } catch (error) {
+            console.error("Error adding to bookmarks", error);
+        }
+    };
+
+    const handleRemoveFromBookmark = async () => {
+        try {
+            let bookmarks = await AsyncStorage.getItem('bookmarks');
+            bookmarks = bookmarks ? JSON.parse(bookmarks) : [];
+            const updatedBookmarks = bookmarks.filter(bookmark => bookmark.nft_data.external_data.name !== nft.nft_data.external_data.name);
+            await AsyncStorage.setItem('bookmarks', JSON.stringify(updatedBookmarks));
+            setBookmarkAdded(false);
+        } catch (error) {
+            console.error("Error removing from bookmarks", error);
+        }
+    };
+
     return (
 
         <View style={{ flex: 1, backgroundColor: "#0F0F0F", padding: 20 }}>
@@ -42,11 +72,17 @@ export default function DetailViewScreen({ navigation, route }) {
 
             <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
-                <Image
+                {nft?.nft_data?.external_data?.image ? <Image
                     source={{ uri: nft?.nft_data?.external_data?.image }}
                     style={styles.NFTImage}
                     resizeMode="cover"
-                />
+                /> :
+                    <Image
+                        source={images.noImageAvailable}
+                        style={styles.NFTImage}
+                        resizeMode="cover"
+                    />
+                }
                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 30, width: "95%" }} >
                     <Image
                         source={images.deLogo}
@@ -81,16 +117,22 @@ export default function DetailViewScreen({ navigation, route }) {
                     {nft?.nft_data?.external_data?.description}
                 </Text>
 
-                <View  style={styles.attributeContainer}>
+                <View style={styles.attributeContainer}>
                     <Text style={styles.attributeField}>Attributes: {" "}<Text style={styles.attributeFieldtext}>{firstFiveValues}</Text> </Text>
-                            
-                        </View>
+
+                </View>
 
 
-                
-                <TouchableOpacity style={styles.ctaBookmark}>
-                    <Text style={styles.ctaText}> Add to Bookmark</Text>
-                </TouchableOpacity>
+                <View style={styles.buttonContainer}>
+                    {bookmarkAdded ?
+                        <TouchableOpacity style={styles.ctaRedBookmark} onPress={handleRemoveFromBookmark} >
+                            {<Text style={styles.ctaText}> Remove from Bookmark</Text>}
+                        </TouchableOpacity>
+                        :
+                        <TouchableOpacity style={styles.ctaBookmark} onPress={handleAddToBookmark}>
+                            {<Text style={styles.ctaText}> Add to Bookmark</Text>}
+                        </TouchableOpacity>}
+                </View>
             </View>
         </View>
 
@@ -98,7 +140,7 @@ export default function DetailViewScreen({ navigation, route }) {
 }
 const styles = StyleSheet.create({
     containerOverall: {
-        marginBottom: 60
+        flex: 1,
     },
     backRoute: {
         display: 'flex',
@@ -170,31 +212,49 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         paddingBottom: 15,
         paddingTop: 15,
-        borderRadius: 4,
+        borderRadius: 8,
         marginTop: 30,
-        width:'100%',
+        width: '95%',
+    },
+    ctaRedBookmark: {
+        backgroundColor: 'tomato',
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingBottom: 15,
+        paddingTop: 15,
+        borderRadius: 8,
+        marginTop: 30,
+        width: '95%',
     },
     ctaText: {
         fontSize: 16,
         fontWeight: "500",
-        textAlign:'center',
-        color:'#fff'
+        textAlign: 'center',
+        color: '#fff'
     },
     deImageLogo: {
         width: 60,
         height: 60,
         borderRadius: 50,
     },
-    attributeField:{
+    attributeField: {
         fontSize: 15,
         fontWeight: "500",
         color: "#fff",
-        marginTop:10,
-        lineHeight:24
+        marginTop: 10,
+        lineHeight: 24
     },
-    attributeFieldtext:{
+    attributeFieldtext: {
         fontSize: 14,
         fontWeight: 'normal',
         color: "#cccccc",
+    },
+    buttonContainer: {
+        position: 'absolute',
+        bottom: -150,
+        left: 0,
+        right: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })
