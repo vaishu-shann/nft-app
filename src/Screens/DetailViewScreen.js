@@ -117,20 +117,32 @@ export default function DetailViewScreen({ navigation, route }) {
                     {nft?.nft_data?.external_data?.description}
                 </Text>
 
-                <View style={styles.attributeContainer}>
+               
                     <Text style={styles.attributeField}>Attributes: {" "}<Text style={styles.attributeFieldtext}>{firstFiveValues}</Text> </Text>
 
-                </View>
+              
 
 
                 <View style={styles.buttonContainer}>
                     {bookmarkAdded ?
                         <TouchableOpacity style={styles.ctaRedBookmark} onPress={handleRemoveFromBookmark} >
-                            {<Text style={styles.ctaText}> Remove from Bookmark</Text>}
+                           <View style={{display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                           <Image
+                        source={images.deleteLined}
+                        style={styles.deleteicon}
+                        resizeMode="contain"
+                    />
+                              <Text style={styles.ctaText}> Remove from Bookmark</Text>
+                            </View>
                         </TouchableOpacity>
                         :
                         <TouchableOpacity style={styles.ctaBookmark} onPress={handleAddToBookmark}>
-                            {<Text style={styles.ctaText}> Add to Bookmark</Text>}
+                           <View style={{display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                           <Image
+                        source={images.bookmarkLined}
+                        style={styles.bmkicon}
+                        resizeMode="contain"
+                    /><Text style={styles.ctaText}> Add to Bookmark</Text></View>
                         </TouchableOpacity>}
                 </View>
             </View>
@@ -242,7 +254,9 @@ const styles = StyleSheet.create({
         fontWeight: "500",
         color: "#fff",
         marginTop: 10,
-        lineHeight: 24
+        lineHeight: 24,
+width:352
+  
     },
     attributeFieldtext: {
         fontSize: 14,
@@ -256,5 +270,15 @@ const styles = StyleSheet.create({
         right: 0,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    deleteicon:{
+        width:25,
+        height:25,
+        marginRight:5
+    },
+    bmkicon:{
+        width:20,
+        // height:25,
+        marginRight:5
     }
 })

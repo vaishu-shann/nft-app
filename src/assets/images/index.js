@@ -11,4 +11,11 @@ noImageAvailable:require("./no-image.png"),
 deLogo:require("./DE_logo.jpg"),
 deleteIcon:require("./remooveBookmark.png"),
 emptyIcon:require("./empty.png"),
+deleteLined:require("./delete.png"),
+bookmarkLined:require("./bookmark-lined.png"),
+homeWhite:require("./home_white.png"),
+homeClrL:require("./home_clr.png"),
+bookmarkWhite:require("./bookmark_white.png"),
+bookmarkClr:require("./bookmark_clr.png"),
+
 }

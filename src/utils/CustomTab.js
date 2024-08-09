@@ -16,6 +16,7 @@ import { icons } from "../Assets/icons";
 import HomeScreen from "../Screens/HomeScreen";
 import BookmarkScreen from "../Screens/BookmarkScreen";
 import DetailViewScreen from "../Screens/DetailViewScreen";
+import { images } from "../assets/images";
 
 export const CustomTab = () => {
   const { colors } = useTheme();
@@ -41,7 +42,7 @@ export const CustomTab = () => {
             borderTopRightRadius: 25,
             borderTopColor: "#202020",
             height: 78,
-            paddingBottom: 40,
+            paddingBottom: 0,
             position: "absolute",
 
           },
@@ -54,9 +55,21 @@ export const CustomTab = () => {
           name="Home"
           component={HomeScreen}
           options={{
-            tabBarLabel: "Home",
+            tabBarLabel: "",
             tabBarColor: "white",
-
+            
+            tabBarIcon: ({ focused }) => (
+              <View style={{}}>
+                <Image
+                  source={focused ? images.homeClrL: images.homeWhite}
+                  style={{
+                    height: 30,
+                    width: 30,
+                    resizeMode: "contain",
+                  }}
+                />
+              </View>
+            ),
           }}
         />
 
@@ -65,9 +78,20 @@ export const CustomTab = () => {
           name="Bookmark"
           component={BookmarkScreen}
           options={{
-            tabBarLabel: "Bookmark",
+            tabBarLabel: "",
             tabBarColor: "white",
-
+            tabBarIcon: ({ focused }) => (
+              <View style={{}}>
+                <Image
+                  source={focused ? images.bookmarkClr: images.bookmarkWhite}
+                  style={{
+                    height: 25,
+                    width: 25,
+                    resizeMode: "contain",
+                  }}
+                />
+              </View>
+            ),
           }}
         />
       </Tab.Navigator>

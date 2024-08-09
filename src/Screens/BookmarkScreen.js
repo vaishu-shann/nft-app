@@ -98,7 +98,8 @@ export default function BookmarkScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     MainCont: {
-        backgroundColor: "#0F0F0F"
+        backgroundColor: "#0F0F0F",
+        marginBottom:60
     },
     itemContainer: {
         marginBottom: 20,
