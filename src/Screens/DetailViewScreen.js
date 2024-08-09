@@ -1,3 +1,4 @@
+
 import {
     StyleSheet,
     Text,
@@ -12,10 +13,15 @@ import {
 } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
 import { images } from "../assets/images";
-
+import { getEllipsisTxt } from "../utils/formatter";
 
 export default function DetailViewScreen({ navigation, route }) {
+    const { item } = route.params;
+    const nft = item;
 
+    // const firstFiveFeature = attributes.slice(0, 5).map(attribute => attribute.value).join(',');
+
+    const firstFiveValues = nft?.nft_data?.external_data?.attributes?.slice(0, 5).map(attribute => attribute.value).join(', ');
     return (
 
         <View style={{ flex: 1, backgroundColor: "#0F0F0F", padding: 20 }}>
@@ -29,44 +35,63 @@ export default function DetailViewScreen({ navigation, route }) {
                     <Text
                         style={styles.BackText}
                     >
-                        Detail View Screen
+                        {nft?.nft_data?.external_data?.name}
                     </Text>
                 </View>
             </TouchableOpacity>
 
             <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
                 <Image
-                    source={images.sample1}
+                    source={{ uri: nft?.nft_data?.external_data?.image }}
                     style={styles.NFTImage}
                     resizeMode="cover"
                 />
-              
-                <Text style={styles.nftName}>
-                    NFT Name Here
-                </Text>
-                <Text style={styles.ownerName}>
-                    Owned by{" "}
-                    <Text style={styles.span}>
-                        GrayWOLF03
-                    </Text>
-                </Text>
+                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 30, width: "95%" }} >
+                    <Image
+                        source={images.deLogo}
+                        style={styles.deImageLogo}
+                        resizeMode="cover"
+                    />
+                    <View style={{ display: 'flex', flexDirection: 'row', alignItems: "center", justifyContent: 'space-between', width: '80%' }}>
+                        <View style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginLeft: 15 }}>
+                            <Text style={styles.nftName}>
+                                {nft?.contract_name}
+                            </Text>
+                            <Text style={styles.ownerName}>
+                                By{" "}
+                                <Text style={styles.span}>
+                                    {getEllipsisTxt(nft?.nft_data?.current_owner, 5)}
+                                </Text>
+                            </Text>
+                        </View>
+                        <View style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                            <Text style={styles.spanPrice}>
+                                1.469 ETH
+                            </Text>
+                            <Text style={styles.PriceText}>
+                                $3,798.19
+                            </Text>
+
+                        </View>
+                    </View>
+                </View>
+
                 <Text style={styles.DescriptionText}>
-                    10,000 of the most degenerate and Unique Gods in the NFT universe.
-                </Text>
-                <Text style={styles.PriceText}>
-                   Current Price :{" "}
-                   <Text style={styles.spanPrice}>
-                   1.469 ETH {" "}
-                    </Text>
-                    <Text style={styles.PriceText}>
-                    $3,798.19
-                    </Text>
+                    {nft?.nft_data?.external_data?.description}
                 </Text>
 
+                <View  style={styles.attributeContainer}>
+                    <Text style={styles.attributeField}>Attributes: {" "}<Text style={styles.attributeFieldtext}>{firstFiveValues}</Text> </Text>
+                            
+                        </View>
+
+
+                
                 <TouchableOpacity style={styles.ctaBookmark}>
-                   <Text style={styles.ctaText}> Add to Bookmark</Text> 
+                    <Text style={styles.ctaText}> Add to Bookmark</Text>
                 </TouchableOpacity>
-                </View>
+            </View>
         </View>
 
     )
@@ -83,70 +108,93 @@ const styles = StyleSheet.create({
 
     },
     backImage: {
-        width: 30,
-        height: 30
+        width: 25,
+        height: 25
     },
     BackText: {
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: "600",
-        marginLeft: 10
+        marginLeft: 10,
+        color: '#fff'
     },
     NFTImage: {
-        width: 300,
-        height: 300,
-        borderRadius: 4,
+        width: "95%",
+        height: 375,
+        borderRadius: 20,
         marginTop: 50
     },
     nftName: {
-        fontSize: 24,
+        fontSize: 22,
         fontWeight: "700",
         color: "#fff",
-        marginTop: 25,
-        textAlign:'center'
+
+        textAlign: 'center'
     },
     ownerName: {
         fontSize: 16,
         fontWeight: "400",
         color: "#ccc",
-        marginTop: 10,
-        textAlign:'center'
+        marginTop: 4,
+        textAlign: 'center'
 
     },
     span: {
         color: "#D162EC",
-        marginLeft: 5
+        marginLeft: 5,
+        letterSpacing: 0.5,
     },
     DescriptionText: {
+        fontSize: 16,
+        fontWeight: 'normal',
+        color: "#fff",
+        marginTop: 15,
+        lineHeight: 26,
+        textAlign: 'left',
+        letterSpacing: 0.5,
+
+    },
+    PriceText: {
         fontSize: 14,
         fontWeight: 'normal',
         color: "#cccccc",
         paddingTop: 8,
-        lineHeight: 24,
-        textAlign:'center',
-letterSpacing:0.2
     },
-    PriceText:{
-        fontSize: 14,
-        fontWeight: 'normal',
-        color: "#cccccc",
-        paddingTop: 8,
-    },
-    spanPrice:{
-        fontSize: 30,
-        fontWeight:"700",
+    spanPrice: {
+        fontSize: 18,
+        fontWeight: "700",
         color: "#fff",
     },
-    ctaBookmark:{
-        backgroundColor:'#D162EC',
+    ctaBookmark: {
+        backgroundColor: '#D162EC',
         paddingLeft: 10,
         paddingRight: 10,
-        paddingBottom: 10,
-        paddingTop: 10,
-        borderRadius:4,
-        marginTop:30
+        paddingBottom: 15,
+        paddingTop: 15,
+        borderRadius: 4,
+        marginTop: 30,
+        width:'100%',
     },
-    ctaText:{
-        fontSize:14,
-        fontWeight:"600"
+    ctaText: {
+        fontSize: 16,
+        fontWeight: "500",
+        textAlign:'center',
+        color:'#fff'
+    },
+    deImageLogo: {
+        width: 60,
+        height: 60,
+        borderRadius: 50,
+    },
+    attributeField:{
+        fontSize: 15,
+        fontWeight: "500",
+        color: "#fff",
+        marginTop:10,
+        lineHeight:24
+    },
+    attributeFieldtext:{
+        fontSize: 14,
+        fontWeight: 'normal',
+        color: "#cccccc",
     }
 })
