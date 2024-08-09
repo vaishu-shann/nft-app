@@ -9,47 +9,29 @@ import {
     ImageBackground,
     FlatList,
 } from "react-native";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import { images } from "../assets/images"
 import { fetchData } from "../Services/APIManager";
+import { getEllipsisTxt } from "../utils/formatter";
 
-
-const NftFeed = [
-    { id: 1, image: images.sample1, name: "NFT Name 1", price: '0.3456 ETH' },
-    { id: 2, image: images.sample2, name: "NFT Name 2", price: '0.8765 ETH' },
-    { id: 3, image: images.sample2, name: "NFT Name 3", price: '0.3498 ETH' },
-    { id: 4, image: images.sample1, name: "NFT Name 4", price: '0.5673 ETH' },
-    { id: 5, image: images.sample1, name: "NFT Name 5", price: '0.3498 ETH' },
-
-]
 
 export default function HomeScreen({ navigation, route }) {
 
-    const [data, setData] = useState(null);
+    const [nftData, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const [bookmarkedStates, setBookmarkedStates] = useState({});
 
-    const handlePress = (id) => {
-        setBookmarkedStates((prevState) => ({
-            ...prevState,
-            [id]: !prevState[id], // Toggle bookmark state
-        }));
-    };
-
-
-
-    useEffect(() => {
+    useLayoutEffect(() => {
         fetchNFTData();
-    }, []);
+    }, [loading]);
 
     const fetchNFTData = async () => {
-
         const API_res = await fetchData();
+        console.log("API_res",API_res?.data?.items )
         if (!API_res) {
             setError(true)
         }
-        setData(API_res)
+        setData(API_res?.data?.items)
         setLoading(false)
     }
 
@@ -81,30 +63,35 @@ export default function HomeScreen({ navigation, route }) {
 
 
                 <View style={styles.nftContainer}>
-
-                    {NftFeed.map((nft) => (
-                        <TouchableOpacity onPress={() => navigation.navigate('DetailViewScreen', { itemId: nft?.id })}>
-                            <View key={nft.id} style={styles.singleNFT}>
+                    {nftData?.map((nft) => {return(
+                        <TouchableOpacity onPress={() => navigation.navigate('DetailViewScreen', { item:nft?.nft_data })}>
+                            <View key={nft?.nft_data?.token_id} style={styles.singleNFT}>
+                             {nft?.nft_data?.external_data?.image?   <Image
+                                    source={{uri:nft?.nft_data?.external_data?.image}}
+                                    style={styles.NFTImage} 
+                                    resizeMode="contain"
+                                /> : 
                                 <Image
-                                    source={nft.image}
-                                    style={styles.NFTImage} nft
-                                    resizeMode="cover"
+                                    source={images.noImageAvailable}
+                                    style={styles.NFTImage} 
+                                    resizeMode="contain"
                                 />
+                                }
                                 <View style={styles.nftData}>
                                     <Text style={styles.nftName}>
-                                        {nft.name}
+                                        {nft?.nft_data?.external_data?.name ? nft?.nft_data?.external_data?.name :'--'}
                                     </Text>
 
-                                    <View style={styles.bookmarkFlex}>
+                                  <View style={styles.bookmarkFlex}>
                                         <Text style={styles.nftPrice}>
-                                            {nft.price}
+                                            {getEllipsisTxt(nft?.nft_data?.current_owner,8)}
                                         </Text>
 
                                     </View>
                                 </View>
                             </View>
                         </TouchableOpacity>
-                    ))}
+                    )})} 
 
                 </View>
 
@@ -153,8 +140,9 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
         // borderColor: "#D162EC",
 
-        borderRadius: 2,
-        marginBottom: 30
+        borderRadius: 4,
+        marginBottom: 30,
+
     },
     nftData: {
         backgroundColor: '#252525',
@@ -162,11 +150,14 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         paddingBottom: 10,
         paddingTop: 10,
+        borderBottomLeftRadius: 4,
+        borderBottomRightRadius: 4,
     },
     NFTImage: {
-        width: 170,
-        height: 200,
-        borderRadius: 2
+        width: 180,
+        height: 170,
+     borderTopRightRadius:4,
+     borderTopLeftRadius:4
     },
     nftOwner: {
         fontSize: 15,
@@ -178,13 +169,17 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "bold",
         color: "#fff",
-        marginTop: 10,
+        marginTop: 6,
+        marginBottom:4,
+        letterSpacing:1,
     },
     nftPrice: {
-        fontSize: 14,
+        fontSize: 13,
         fontWeight: "400",
         color: "#cccccc",
-        marginTop: 4,
+        marginTop: 7,
+        letterSpacing:0.8,
+
     },
     bookmarkFlex: {
         display: 'flex',

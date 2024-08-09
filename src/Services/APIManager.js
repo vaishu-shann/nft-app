@@ -10,19 +10,21 @@ export const fetchData = async () => {
     try {
         const response = await fetch(url, {
             headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Basic ${TOKEN}`
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${TOKEN}`
             }
-          });
-    
-          if (!response.ok) {
+        });
+
+        if (!response.ok) {
+        console.log("--------NOT Ok--------",response.status)
             throw new Error(`Error: ${response.status}`);
-          }
-    
-          const data = await response.json();
-      return data
+        }
+
+        const data = await response.json();
+        console.log("--------API--------", data)
+        return data
     } catch (err) {
-   
+
         return false;
     }
-  };
+};
