@@ -41,7 +41,12 @@ export default function HomeScreen({ navigation, route }) {
                     style={styles.LogoImage}
                     resizeMode="contain"
                 />
-                <View>
+                  <Image
+                    source={images.homeBanner}
+                    style={styles.BannerImage}
+                    resizeMode="cover"
+                />
+                <View style={{marginTop:30}}>
                     <Text style={styles.headerText}>
                         Explore, Buy and sell World
                     </Text>
@@ -52,12 +57,10 @@ export default function HomeScreen({ navigation, route }) {
                     </Text>
                 </View>
 
-                <Image
-                    source={images.homeBanner}
-                    style={styles.BannerImage}
-                    resizeMode="cover"
-                />
-
+              
+                <Text style={styles.subheaderText} >
+                      Collections
+                    </Text>
 
                 <View style={styles.nftContainer}>
                     {nftData?.map((nft) => {
@@ -113,6 +116,12 @@ const styles = StyleSheet.create({
         color: "#fff",
 
     },
+    subheaderText:{
+        fontSize: 26,
+        fontWeight: "bold",
+        color: "#fff",
+        marginTop:30
+    },
     DescriptionText: {
         fontSize: 14,
         fontWeight: 'normal',
@@ -124,7 +133,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 150,
         borderRadius: 8,
-        marginTop: 20
+        marginTop: 10
     },
     nftContainer: {
         display: 'flex',
@@ -132,7 +141,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        marginTop: 50
+        marginTop: 15
 
     },
     singleNFT: {

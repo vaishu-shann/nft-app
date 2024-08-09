@@ -6,7 +6,7 @@ import {
     Image,
     TouchableOpacity,
 } from "react-native";
-import React, {  useState,  } from "react";
+import React, {  useState, useEffect } from "react";
 import { images } from "../assets/images";
 import { getEllipsisTxt } from "../utils/formatter";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -18,6 +18,20 @@ export default function DetailViewScreen({ navigation, route }) {
     const [bookmarkAdded, setBookmarkAdded] = useState(false)
     const firstFiveValues = nft?.nft_data?.external_data?.attributes?.slice(0, 5).map(attribute => attribute.value).join(', ');
 
+    useEffect(() => {
+        const checkBookmarkStatus = async () => {
+            try {
+                let bookmarks = await AsyncStorage.getItem('bookmarks');
+                bookmarks = bookmarks ? JSON.parse(bookmarks) : [];
+                const isBookmarked = bookmarks.some(bookmark => bookmark.nft_data.external_data.name === nft.nft_data.external_data.name);
+                setBookmarkAdded(isBookmarked);
+            } catch (error) {
+                console.error("Error checking bookmark status", error);
+            }
+        };
+
+        checkBookmarkStatus();
+    }, [nft]);
 
     const handleAddToBookmark = async () => {
         try {
@@ -196,7 +210,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'normal',
         color: "#fff",
-        marginTop: 15,
+        marginTop: 20,
         lineHeight: 26,
         textAlign: 'left',
         letterSpacing: 0.5,
@@ -245,12 +259,12 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
     attributeField: {
-        fontSize: 15,
+        fontSize: 16,
         fontWeight: "500",
         color: "#fff",
-        marginTop: 10,
+        marginTop: 15,
         lineHeight: 24,
-width:352
+width:355
   
     },
     attributeFieldtext: {
