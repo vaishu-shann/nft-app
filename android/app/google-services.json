@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "882582062388",
+    "firebase_url": "https://PushProtocol-mvp-default-rtdb.firebaseio.com",
+    "project_id": "PushProtocol-mvp",
+    "storage_bucket": "PushProtocol-mvp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882582062388:android:7936e880c027e9f9755161",
+        "android_client_info": {
+          "package_name": "com.PushProtocol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882582062388-mp2ss15bnhpapldfi5vbic62tka704r0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.PushProtocol",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "882582062388-vdl1cr0g9s38sja62kt77gco05o19mdk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.PushProtocol",
+            "certificate_hash": "d2d6172561396b719ad6f83c8777273543d676b3"
+          }
+        },
+        {
+          "client_id": "882582062388-kmk7t7memg4da54nhhp08amouaf0pvdb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzTAQyF0pCbdMhfkd1um09DwJaxWrw9-w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882582062388-kmk7t7memg4da54nhhp08amouaf0pvdb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
