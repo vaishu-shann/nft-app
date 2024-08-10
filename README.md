@@ -20,19 +20,21 @@ Welcome to the DeGods NFT Collections React Native App! This application provide
    ```sh
    git clone https://github.com/vaishu-shann/nft-app
    cd nft-app
+   ```
 
-2. **Install Dependencies**:
-  ```sh
- npm install 
-  # or 
-  yarn install
+2.  **Install Dependencies**:
+   ```sh
+   npm install
+   # or
+   yarn install
+```
 
-3. **Start the Development Server**:
+3.**Start the Development Server**:
   ```sh
  npx react-native start 
   # or 
   yarn react-native start 
-
+```
 
 ### Configuration
 
