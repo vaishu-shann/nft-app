@@ -5,13 +5,13 @@
 Welcome to the DeGods NFT Collections React Native App! This application provides users with a seamless way to explore, view, and interact with DeGods NFT collections. DeGods is a leading NFT project with a wide range of unique digital assets. This app aims to provide a user-friendly interface for NFT enthusiasts to access and bookmark their DeGods collections on the go.
 
 ### Home Screen
-<img src="https://github.com/vaishu-shann/nft-app/blob/main/src/assets/images/HomeScreen.jpg" width="300" height="450">
+<img src="https://github.com/vaishu-shann/nft-app/blob/main/src/assets/images/HomeScreen.jpg" width="300" >
 
 ### Detail View Screen
-<img src="https://github.com/vaishu-shann/nft-app/blob/main/src/assets/images/DetailViewScreen.jpg" width="300" height="450">
+<img src="https://github.com/vaishu-shann/nft-app/blob/main/src/assets/images/DetailViewScreen.jpg" width="300" >
 
 ### Bookmark Screen
-<img src="https://github.com/vaishu-shann/nft-app/blob/main/src/assets/images/BookmarkScreen.jpg" width="300" height="450">
+<img src="https://github.com/vaishu-shann/nft-app/blob/main/src/assets/images/BookmarkScreen.jpg" width="300" >
 
 ## Tech Stack
 
