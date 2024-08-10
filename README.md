@@ -7,9 +7,9 @@ Welcome to the DeGods NFT Collections React Native App! This application provide
 ## Tech Stack
 
 - **React Native**: Framework for building native apps using React.
-- **React**:The most popular UI framework.
+- **React**: The most popular UI framework.
 - **React Navigation**: Routing and navigation for React Native apps.
-- **Fetch API**:Native JavaScript API for making HTTP requests.
+- **Fetch API**: Native JavaScript API for making HTTP requests.
 
 
 ## Development
@@ -21,9 +21,9 @@ Welcome to the DeGods NFT Collections React Native App! This application provide
    git clone https://github.com/vaishu-shann/nft-app
    cd nft-app
 
-2. **Install Dependencies:**:
-   ```sh
-  npm install
+2. **Install Dependencies**:
+  ```sh
+ npm install 
   # or 
   yarn install
 
@@ -32,12 +32,6 @@ Welcome to the DeGods NFT Collections React Native App! This application provide
  npx react-native start 
   # or 
   yarn react-native start 
-
-4.**Start the Development Server**:
- ```sh
-npx react-native run-android
-# or
-yarn  react-native run-android
 
 
 ### Configuration
@@ -61,4 +55,5 @@ We welcome contributions from the community! To get involved:
 
 
 Happy Exploring DeGods!
+
 
