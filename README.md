@@ -17,10 +17,10 @@ Welcome to the DeGods NFT Collections React Native App! This application provide
 ### Setup Instructions
 
 1. **Clone the Repository**:
-   ```sh
-   git clone https://github.com/vaishu-shann/nft-app
-   cd nft-app
-   ```
+ ```sh
+ git clone https://github.com/vaishu-shann/nft-app
+ cd nft-app
+ ```
 
 2.  **Install Dependencies**:
    ```sh
@@ -53,7 +53,6 @@ We welcome contributions from the community! To get involved:
 -   [Open an issue](https://github.com/vaishu-shann/nft-app/issues) if you encounter any bugs or have feature requests.
 -   [Submit a pull request](https://github.com/vaishu-shann/nft-app/pulls) to propose improvements, new features, or bug fixes.
 
-      <img src='https://avatars.githubusercontent.com/u/52348398?v=4' alt='Contributor' />
 
 
 Happy Exploring DeGods!
