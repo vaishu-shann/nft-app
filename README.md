@@ -9,7 +9,7 @@ Welcome to the DeGods NFT Collections React Native App! This application provide
 https://github.com/user-attachments/assets/495d711b-d69b-4ec7-8da8-06f7fdf61db0
 
 
-You can download video directly [here](https://github.com/vaishu-shann/nft-app/blob/main/src/assets/images/app_overview.mp4).
+You can download the installable android apk directly from [here](https://drive.google.com/file/d/1lthdPVLgRM0JjJmEqze23FThKvS_g-62/view?usp=sharing).
 
 ### Home Screen
 <img src="https://github.com/vaishu-shann/nft-app/blob/main/src/assets/images/HomeScreen.jpg" width="250" >
